@@ -41,6 +41,8 @@ sample.mean
 
 The theoretical mean is `r theoretical.mean` whereas the sample mean is centered at `r sample.mean`.
 
+See **appendix 1** for a plot.
+
 ## Sample Variance versus Theoretical Variance
 **Requirement 2**: *Show how variable the sample is (via variance) and compare it to the theoretical variance of the distribution.*
 
@@ -78,3 +80,29 @@ plot
 ```
 
 As can be observed in Figure 3, the shape of the distribution indicates that it is approximately normal. A normal curve (in red) is overlayed for comparison. 
+
+\pagebreak
+
+# Appendix
+
+## Appendix 1 - Plot of histogram with sample mean and calculated theoretical mean
+To aid with visualization, a histogram of the sample means is generated.
+```{r, warning=FALSE, fig.width=12}
+library(ggplot2)
+simulation.mean.df <- data.frame(simulation.mean)  # convert to dataframe for plotting
+plot <- ggplot(simulation.mean.df, aes(x = simulation.mean)) 
+plot <- plot + geom_histogram(color="black", fill = "steelblue", 
+                              binwidth = 0.1, alpha = 0.2)
+plot <- plot + ggtitle("Figure 1: Distribution of Simulation Means")
+plot <- plot + ylab("Count") + xlab("Simulation Means")
+
+# Put mean values in the dataframe for plotting as veritical lines
+means.df <- data.frame(xintercept = c(theoretical.mean, sample.mean), 
+                       Means = factor(c("Theoretical", "Sample")))
+plot <- plot + geom_vline(aes(xintercept = xintercept, linetype = Means), 
+                          data = means.df, color = c("firebrick", "forestgreen"), 
+                          show_guide = T)
+plot
+```
+
+**Note:** Since the sample mean and calculated theoretical mean are very close together it can be difficult to observe the difference on this chart with normal screen resolution. 
