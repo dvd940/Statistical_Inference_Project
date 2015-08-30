@@ -1,6 +1,6 @@
 ---
 title: "Statistical Inference Project 1"
-output: pdf_document
+output: html_document
 date: "August 9, 2015"
 ---
 ```{r, echo=FALSE}
