@@ -1,6 +1,8 @@
 ---
 title: "Statistical Inference Project 2"
-output: pdf_document
+output: 
+  html_document: 
+    keep_md: yes
 date: "August 14, 2015"
 ---
 
